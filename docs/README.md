@@ -1,6 +1,6 @@
 # Documentation
 
-Documentation of ack-nestjs-boilerplate
+Documentation of api-kocek-ewalletapp
 
 ## Prerequisites
 

@@ -17,7 +17,7 @@ The recommended version is the LTS version for every tool and package.
 Clone the project with git.
 
 ```bash
-git clone https://github.com/andrechristikan/ack-nestjs-boilerplate.git
+git clone https://github.com/antowirantoIO/api-kocek-ewalletapp.git
 ```
 
 ### Install Dependencies

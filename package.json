@@ -1,14 +1,14 @@
 {
-  "name": "ack-nestjs-boilerplate",
-  "version": "5.7.0",
-  "description": "Ack NestJs Boilerplate",
+  "name": "api-kocek-ewalletapp",
+  "version": "1.0.0",
+  "description": "API Kocek Ewallet App",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrechristikan/ack-nestjs-boilerplate.git"
+    "url": "https://github.com/antowirantoIO/api-kocek-ewalletapp.git"
   },
   "author": {
-    "name": "andrechristikan",
-    "email": "ack@baibay.id"
+    "name": "antowirantoIO",
+    "email": "antowiranto@devlab.id"
   },
   "private": true,
   "license": "MIT",
@@ -29,7 +29,7 @@
     "lint:test": "eslint --ext .ts,.tsx 'test/**/*.ts' --no-error-on-unmatched-pattern",
     "test": "TZ=UTC jest --config test/jest.json --runInBand --passWithNoTests --forceExit",
     "prepare": "husky install",
-    "deadcode": "ts-prune --project tsconfig.json --unusedInModule --skip *.json",
+    "deadcode": "",
     "deadcode:filter": "ts-prune --project tsconfig.json --unusedInModule --skip *.json | grep -v '(used in module)'",
     "deadcode:count": "ts-prune --project tsconfig.json --unusedInModule --skip *.json | grep -v '(used in module)' | wc -l",
     "spell": "yarn spell:src && yarn spell:test",
