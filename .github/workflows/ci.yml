@@ -1,0 +1,75 @@
+# .github/workflows/ci-cd.yml
+
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          extensions: mbstring, pdo, pdo_mysql, dom, gd, curl
+          ini-values: post_max_size=256M, upload_max_filesize=256M
+          coverage: xdebug
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Create environment file
+        run: cp .env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Migrate database
+        run: php artisan migrate --force
+
+      - name: Run tests
+        run: vendor/bin/phpunit --coverage-text
+
+      - name: Bump version and push tag
+        id: version
+        uses: anothrNick/github-tag-action@v1.37.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: 'main'
+          pre_release: false
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.new_tag }}
+          release_name: Release ${{ steps.version.outputs.new_tag }}
+          body: |
+            Changes in this release:
+            - Describe your changes here
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
