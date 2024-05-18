@@ -66,7 +66,7 @@ jobs:
           release_name: Release ${{ steps.version.outputs.new_tag }}
           body: |
             Changes in this release:
-            - Bump Version to ${{ steps.version.outputs.new_tag }}
+            - Bump Version to ${{ steps.version.outputs.new_tag }} with commit ${{ github.sha }}
           draft: false
           prerelease: false
         env:
