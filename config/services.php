@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'otp' => [
+        'token' => env('SMS_SERVICE_TOKEN'),
+    ],
+
 ];

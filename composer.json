@@ -10,7 +10,8 @@
         "laravel/tinker": "^2.9",
         "league/fractal": "^0.20.1",
         "prettus/laravel-validation": "^1.6",
-        "robclancy/presenter": "^3.0"
+        "robclancy/presenter": "^3.0",
+        "tymon/jwt-auth": "^2.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
