@@ -53,7 +53,7 @@ jobs:
 
       - name: Bump version and push tag
         id: version
-        uses: anothrNick/github-tag-action@v1.37.0
+        uses: anothrNick/github-tag-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: 'main'
